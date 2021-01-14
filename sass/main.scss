@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+$color-primary: hsl(229, 57%, 11%);
+$color-box: hsl(228, 56%, 26%);
+$color-icon: #0e112b;
+
+$color-pink-light: hsl(6, 100%, 80%);
+$color-pink-dark:hsl(335, 100%, 65%);
+
+html {
+    height: 100%;
+    background: url(./assets/bg-desktop.png) $color-primary;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100% 50%;
+}
+
+body {
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-size: medium;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.box {
+    background-color: $color-box;
+
+    &_left {
+        border-radius: 7px 100px 7px 7px;
+        height: 200px;
+        flex: .3;
+        padding-left: 35px;
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        .icons_line {
+            display: flex;
+            justify-content: flex-start;
+        
+            .icon {
+                background-color: $color-icon;
+                height: 45px;
+                width: 45px;
+                margin-right: 15px;
+                border-radius: 8px;   
+                
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    &_right {
+        border-radius: 7px;
+        padding: 40px;
+        flex: .68;
+        position: relative;
+
+        &:hover {
+            .tooltip {
+                opacity: 1;
+                transform: translateY(-17px);
+            }
+        }
+
+        .progress_bar {
+            width: 100%;
+            height: 13px;
+            border-radius: 50px;
+            background-color:$color-primary;
+            margin: 10px 0;
+            padding: 4px;
+            
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        
+            .progress_value {
+                position: relative;
+                width: 80%;
+                padding: 1.4%;
+                border-radius: 50px;
+                background-image: linear-gradient(to right, $color-pink-light, $color-pink-dark);
+                transition: width 1s .2s ease-in-out;
+        
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    right: 3px;
+                    transform: translateY(-50%);
+                    width: 13px;
+                    height: 13px;
+                    border-radius: 50px;
+                    background-color: #fff;
+                }
+            }
+        }
+        
+        .numbers_line {
+            font-size: small;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .tooltip {
+            width: 27%;
+            height: 45%;
+            background-color: #fff;
+            border-radius: 10px;
+            opacity: 0;
+        
+            top: -27%;
+            right: 7%;
+            position: absolute;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+            transition: all .3s .2s ease-out;
+        
+            h1 {
+                color: hsl(228, 56%, 26%);
+                font-weight: bolder;
+            }
+        
+            p {
+                font-size: small;
+                color: hsl(229, 7%, 55%);
+                margin: 5px;
+            }
+        }
+        
+        .arrow {
+            width: 0; 
+            height: 0; 
+            border-left: 30px solid transparent;
+            border-top: 30px solid #fff;
+        
+            top: 87%;
+            right: 0%;
+            position: absolute;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 1050px) {
+    .container {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .container {
+        display: block;
+
+        .box_left {
+            margin-bottom: 15px;
+        }
+
+        .arrow {
+            display: none;
+        }
+    }
+
+    html {
+        background: url(./assets/bg-mobile.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}

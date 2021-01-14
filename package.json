@@ -1,0 +1,25 @@
+{
+  "name": "fylo",
+  "version": "1.0.0",
+  "description": "> This is the one of Second meeting CSS & HTML challenges -> Fylo Data Storage Site ( you can see a preview in the bottom of the page ).",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "node-sass sass/main.scss style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdiAmoyal/Ex---Fylo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdiAmoyal/Ex---Fylo/issues"
+  },
+  "homepage": "https://github.com/AdiAmoyal/Ex---Fylo#readme",
+  "devDependencies": {
+    "node-sass": "^5.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
