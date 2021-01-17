@@ -27,35 +27,37 @@
         <div class="icon">
             <img src="./assets/icon-folder.svg" alt="folder">
         </div>
-        <div class="icon">
-            <img src="./assets/icon-upload.svg" alt="upload">
-        </div>
+        <button class="icon icon-btn">
+          <img src="./assets/icon-upload.svg" alt="upload">
+          <input class="icon-input" type="file" id="input" multiple>
+        </button>
       </div>
     </div>
 
     <div class="box box_right">
       <div class="tooltip">
-        <h1>185</h1>
-        <p>GB LEFT</p>
+        <h1 id="free_space">10</h1>
+        <p>MB LEFT</p>
         <div class="arrow"></div>
       </div>
 
       <div>
-        <p> You’ve used <b>815 GB</b> of your storage </p>
+        <p> You’ve used <b id="used_space">0 MB</b> of your storage </p>
       </div>
       
         <div class="progress_bar">
-          <div class="progress_value">
+          <div class="progress_value" id="progress_value">
             <!-- <div class="point"></div> -->
           </div>
         </div>
       <div class="numbers_line">
-        <p>0 GB</p> 
-        <p>1000 GB</p> 
+        <p>0 MB</p> 
+        <p>10 MB</p> 
       </div>
     </div>
-
   </div>
+
+  <script src="index.js"></script>
   
 </body>
 </html>
