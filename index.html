@@ -15,7 +15,7 @@
 <body>
   <div class="container">
 
-    <div class="box box_left">
+    <div id="amo" class="box box_left">
       <div>
           <img src="./assets/logo.svg" alt="logo">
       </div>
@@ -27,26 +27,26 @@
         <div class="icon">
             <img src="./assets/icon-folder.svg" alt="folder">
         </div>
-        <button class="icon icon-btn">
-          <img src="./assets/icon-upload.svg" alt="upload">
-          <input class="icon-input" type="file" id="input" multiple>
-        </button>
+        <label for="fileInput" class="icon icon-btn">
+            <img src="./assets/icon-upload.svg" alt="upload">
+          <input class="icon-input" type="file" id="fileInput" accept="image/*" />
+        </label>
       </div>
     </div>
 
     <div class="box box_right">
       <div class="tooltip">
-        <h1 id="free_space">10</h1>
+        <h1 id="freeSpace">10</h1>
         <p>MB LEFT</p>
         <div class="arrow"></div>
       </div>
 
       <div>
-        <p> You’ve used <b id="used_space">0 MB</b> of your storage </p>
+        <p> You’ve used <b id="usedSpace">0 MB</b> of your storage </p>
       </div>
       
         <div class="progress_bar">
-          <div class="progress_value" id="progress_value">
+          <div class="progress_value" id="progressValue">
             <!-- <div class="point"></div> -->
           </div>
         </div>
@@ -58,6 +58,6 @@
   </div>
 
   <script src="index.js"></script>
-  
+ 
 </body>
 </html>

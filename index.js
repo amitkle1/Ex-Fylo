@@ -1,62 +1,69 @@
-var maxSize = 10;
-var currSize = 0;
+var storage = 0.5;
+var usedStorage = 0;
+var MB = Math.pow(1024, 2);
+var files = [];
+var fileInput = document.getElementById('fileInput');
+var validFormats = ["jpg","png","jpeg"];
+var isValidateTypeFile = file => !!validFormats.find(format => 'image/'+format === file.type);
 
 var DOMStrings = {
     btn: '.icon-btn',
     input: '.icon-input',
-    usedSpace: 'used_space',
-    freeSpace: 'free_space',
-    valueBar: 'progress_value'
+    usedSpaceId: 'usedSpace',
+    freeSpaceId: 'freeSpace',
+    valueBarId: 'progressValue'
 }
 
-function validate_fileupload(file)
-{
-    var fileName = file.name;
-    var fileSize_MG = file.size / 1000000;
+// GENERAL FUNCTIONS 
 
-    var allowed_extensions = new Array("jpg","png","jpeg");
-    var file_extension = fileName.split('.').pop().toLowerCase();
+function showErrorMessage(message) {
+    alert('Error uploading file: \n ' + message);
+}
 
-    for(var i = 0; i <= allowed_extensions.length; i++) {
-        if(allowed_extensions[i]==file_extension &&
-            fileSize_MG <= 5) {return true;}
+function convertBytesToMB(size) {
+    return size / MB;
+}
+
+
+function renderStorageView(size) {
+    usedStorage += size;
+
+    document.getElementById(DOMStrings.usedSpaceId).innerHTML = usedStorage.toFixed(2) + 'MB';
+    document.getElementById(DOMStrings.freeSpaceId).innerHTML = (storage - usedStorage).toFixed(2);
+    document.getElementById(DOMStrings.valueBarId).style.width = ((usedStorage / storage) * 100).toFixed(2)+ "%";
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////// 
+function uploadFile(ev) {
+    const file = ev.target.files[0];
+    var Errormessage;
+
+    if (isValidateTypeFile(file)) {
+        var fileSizeMB = convertBytesToMB(file.size);
+
+        if(file.size <= 5) {
+            Errormessage = "The file is too big.";
+        }
+
+        if ((fileSizeMB + usedStorage) <= storage) {
+            renderStorageView(fileSizeMB);
+            files.push(file);
+        }
+        else {
+            Errormessage = "There is no enough space in your storage.";
+        }
     }
-    return false;
+    else { 
+        Errormessage = "The file is not valid.";
+    }
+
+    if(Errormessage) {
+        showErrorMessage(Errormessage);
+    }
+
+    ev.target.value = '';
 }
 
-function updateCurrSize(size) {
-    currSize += size;
-    
-    document.getElementById(DOMStrings.usedSpace).innerHTML = currSize.toFixed(2) + 'MB';
-    document.getElementById(DOMStrings.freeSpace).innerHTML = (maxSize - currSize).toFixed(2);
-    document.getElementById(DOMStrings.valueBar).style.width = (currSize / maxSize).toFixed(2) * 100 + "%";
-}
-
-function init() {
-    Array.prototype.forEach.call(document.querySelectorAll(DOMStrings.btn), function(btn) {
-        const hiddenInput = btn.parentElement.querySelector(DOMStrings.input);
-        
-        btn.addEventListener('click', function () {
-            hiddenInput.click();
-        });
-        
-        hiddenInput.addEventListener('change', function() {
-            var arr = Array.prototype.filter.call(hiddenInput.files, validate_fileupload).map(function(file) {
-                return {name: file.name, size: file.size};
-            });
-            
-            arr.forEach(function(file) {
-                var fileSize = file.size / 1000000;
-                
-                if(currSize + fileSize <= maxSize) {
-                    updateCurrSize(fileSize);
-                }
-                else {
-                    alert('"' + file.name + '"' + ' is too big.\nThere is no enough space.');
-                }
-            })
-        });
-    });
-}
-
-init();
+fileInput.addEventListener('change', uploadFile);
