@@ -118,7 +118,8 @@ body {
   position: absolute;
   top: 50px;
   left: 500px;
-  border-spacing: 3px; }
+  border-spacing: 3px;
+  display: none; }
 
 .myTable td {
   font-size: 1rem;
