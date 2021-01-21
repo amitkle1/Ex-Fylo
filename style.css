@@ -11,7 +11,7 @@ html {
 
 body {
   color: #fff;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: medium;
   height: 100%;
   display: flex;
@@ -29,7 +29,7 @@ body {
   .box_left {
     border-radius: 7px 100px 7px 7px;
     height: 200px;
-    flex: .3;
+    flex: 0.3;
     padding-left: 35px;
     display: flex;
     flex-direction: column;
@@ -46,17 +46,10 @@ body {
         display: flex;
         align-items: center;
         justify-content: center; }
-        .box_left .icons_line .icon-btn {
-          border: none; }
-          .box_left .icons_line .icon-btn:active {
-            background-color: #fff;
-            border: none; }
-        .box_left .icons_line .icon-input {
-          display: none; }
   .box_right {
     border-radius: 7px;
     padding: 40px;
-    flex: .68;
+    flex: 0.68;
     position: relative; }
     .box_right:hover .tooltip {
       opacity: 1;
@@ -77,9 +70,9 @@ body {
         padding: 1.4%;
         border-radius: 50px;
         background-image: linear-gradient(to right, #ffa399, #ff4d97);
-        transition: width 1s .2s ease-in-out; }
+        transition: width 1s 0.2s ease-in-out; }
         .box_right .progress_bar .progress_value::after {
-          content: '';
+          content: "";
           position: absolute;
           top: 50%;
           right: 3px;
@@ -104,7 +97,7 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all .3s .2s ease-out; }
+      transition: all 0.3s 0.2s ease-out; }
       .box_right .tooltip h1 {
         color: #1d2c67;
         font-weight: bolder; }
@@ -120,6 +113,16 @@ body {
       top: 87%;
       right: 0%;
       position: absolute; }
+
+.myTable {
+  position: absolute;
+  top: 50px;
+  left: 500px;
+  border-spacing: 3px; }
+
+.myTable td {
+  font-size: 1rem;
+  padding: 5px; }
 
 @media only screen and (max-width: 1050px) {
   .container {
